@@ -20,7 +20,7 @@
 #include <defines.h>
 #include <prototypes.h>
 #include <Arduino_JSON.h>
-
+//asd5
 SoftwareSerial SerialAT(13, 15); // RX, TX
 OneWire oneWire(ONE_WIRE_BUS);
 
