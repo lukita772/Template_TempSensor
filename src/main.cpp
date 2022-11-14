@@ -1,48 +1,32 @@
  /*
    Title: nodo test
    brief: *
-   rev: 1.5:
+   rev: 1.6:
    nota: -
    author: Luca Agostini
    */
 
 #include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include <OneWire.h>
+#include <PubSubClient.h> //cliente mqtt
+#include <OneWire.h>      //Protocolo onewire, utilizado por DallasTemp
 #include <SoftwareSerial.h>
 #include <EEPROM.h>
-#include <ESP8266WebServer.h>
-#include <ESP8266mDNS.h>
-#include <ESP8266HTTPUpdateServer.h>
-#include <ESP8266HTTPClient.h>
+#include <esp8266Libs.h>
 #include <DallasTemperature.h>
 #include <defines.h>
 #include <prototypes.h>
 #include <Arduino_JSON.h>
-//asd5
+#include <mqttConfig.h> 
+
 SoftwareSerial SerialAT(13, 15); // RX, TX
 OneWire oneWire(ONE_WIRE_BUS);
 
 DallasTemperature sensors(&oneWire);
 
-//MQTT login
-const char* broker = "10.128.2.137";
-const uint16_t brokerPort = 1883;
-
-const char MQTT_clientID[] = "test";
-const char MQTT_user[] = "iot";
-const char MQTT_passworld[] = "iotiot";
-
 //WIFI login
 const char* ssid = "IOT";
 const char* password = "T3mp@tUr@...";
 const char *code_ver = "1.5/test";
-
-//Topicos
-const char* mainTopic = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/MainData";
-const char* topicSleepTime = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/Sleeptime";
-const char* topicBootMode = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/BootMode";
 
 
 WiFiClient WIFI_client;
@@ -87,9 +71,7 @@ void setup() {
 
   sensors.begin();
  
-
   timer1 = millis();
-
 }
 
 void suscribeMQTT()
@@ -388,7 +370,7 @@ void publishTopics()
 
   mqttMessage["signalQuality"] = WiFi.RSSI();
   mqttMessage["localIP"] = WiFi.localIP().toString(); 
-  mqttMessage["ID"] = "test";
+  mqttMessage["ID"] = SENSOR_NAME;
   mqttMessage["powerLevel"] = voltage;
   mqttMessage["payload"] = payload;
  
@@ -421,4 +403,3 @@ String getPublicIP()
   return payload;
 }
 */
-

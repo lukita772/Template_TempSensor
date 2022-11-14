@@ -2,10 +2,24 @@
 * brief: defines 
 */
 
+/******************Definir antes de grabar en hw************************/
 
 #define SENSOR_AREA "SanMartin"
 #define SENSOR_NAME "test"
-//#define USE_PANEL // comentar si no usa panel
+//#define USE_PANEL  //comentar si no usa panel
+#define PRIVATE_CONN //comentar si se conecta a una red publica
+
+
+
+/**********************************************************************/
+
+#ifdef PRIVATE_CONN
+  #define BROKER_IP "10.128.2.137"
+  #define BROKER_PORT 1883
+#else
+  #define BROKER_IP "190.104.223.227"
+  #define BROKER_PORT  27001
+#endif
 
 #define ONE_WIRE_BUS 2
 #define CONNECTION_TIMEOUT 12000L
@@ -21,9 +35,7 @@
 
 #define BOOT_MODE_SERVER 2
 #define BOOT_MODE_NORMAL 1
-
 #define BOOT_SERVER_TIMEOUT 120000
-
 
 #ifdef USE_PANEL
   #define BOOT_NORMAL_TIMEOUT 0
@@ -34,7 +46,6 @@
 #define DATA_LENGTH 2
 
 //#define KEEP_AWAKE 5 //PARA SENSOR. DETECTOR DE LLUVIA
-
 
 typedef union charByte {
   uint16_t uint16Data;
@@ -47,3 +58,5 @@ enum connectionType
   _wifi,    //force wifi
   _gprs     //force gsm/gprs
 };
+
+
