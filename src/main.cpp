@@ -1,7 +1,7 @@
  /*
-   Title: nodo test
+   Title: nodo iot
    brief: *
-   rev: 1.5:
+   rev: 1.51
    nota: -
    author: Luca Agostini
    */
@@ -27,17 +27,17 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 //MQTT login
-const char* broker = "10.128.2.137";
-const uint16_t brokerPort = 1883;
+const char* broker = "190.104.223.227";
+const uint16_t brokerPort = 27001;
 
-const char MQTT_clientID[] = "test";
+const char MQTT_clientID[] = SENSOR_NAME;
 const char MQTT_user[] = "iot";
 const char MQTT_passworld[] = "iotiot";
 
 //WIFI login
 const char* ssid = "IOT";
 const char* password = "T3mp@tUr@...";
-const char *code_ver = "1.5/test";
+const char *code_ver = "1.5";
 
 //Topicos
 const char* mainTopic = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/MainData";
@@ -49,12 +49,15 @@ WiFiClient WIFI_client;
 PubSubClient mqtt;
 ESP8266WebServer httpServer(80);
 ESP8266HTTPUpdateServer httpUpdater;
-//ADC_MODE(ADC_VCC);
+
+//#ifndef USE_PANEL
+//  ADC_MODE(ADC_VCC);
+//#endif
 
 //Variables globales . son configurables desde el programa.
 long lastReconnectAttempt = 0;
 long timer1 = 0;
-uint16_t sleepTime = 1; //minuntos
+uint16_t sleepTime = 10; //minuntos
 uint16_t bootMode = 1;
 
 template<typename T>
@@ -388,7 +391,7 @@ void publishTopics()
 
   mqttMessage["signalQuality"] = WiFi.RSSI();
   mqttMessage["localIP"] = WiFi.localIP().toString(); 
-  mqttMessage["ID"] = "test";
+  mqttMessage["ID"] = SENSOR_NAME;
   mqttMessage["powerLevel"] = voltage;
   mqttMessage["payload"] = payload;
  

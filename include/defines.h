@@ -4,7 +4,7 @@
 
 
 #define SENSOR_AREA "SanMartin"
-#define SENSOR_NAME "test"
+#define SENSOR_NAME "3024"
 //#define USE_PANEL // comentar si no usa panel
 
 #define ONE_WIRE_BUS 2
