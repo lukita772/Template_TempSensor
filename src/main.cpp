@@ -36,8 +36,8 @@ ESP8266HTTPUpdateServer httpUpdater;
 //ADC_MODE(ADC_VCC);
 
 //Variables globales . son configurables desde el programa.
-long lastReconnectAttempt = 0;
-long timer1 = 0;
+unsigned long lastReconnectAttempt = 0;
+unsigned long timer1 = 0;
 uint16_t sleepTime = 1; //minuntos
 uint16_t bootMode = 1;
 

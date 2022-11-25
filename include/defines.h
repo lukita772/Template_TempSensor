@@ -8,7 +8,7 @@
 #define SENSOR_NAME "test"
 //#define USE_PANEL  //comentar si no usa panel
 #define PRIVATE_CONN //comentar si se conecta a una red publica
-
+#define SENSOR_ISRAINSENSOR
 
 
 /**********************************************************************/

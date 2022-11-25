@@ -23,3 +23,7 @@ void checkMessages();
 void suscribeMQTT();
 bool mqttIsConnected();
 void mqttSetClient();
+
+#ifdef SENSOR_ISRAINSENSOR
+    void st_rainGaugeSensor_counter(int data);
+#endif
