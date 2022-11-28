@@ -24,6 +24,8 @@
 #define ONE_WIRE_BUS 2
 #define CONNECTION_TIMEOUT 12000L
 
+#define GET_ALL 1
+
 /*** Memmory MAP ***/
 #define EEPROM_ADDR_SLEEPTIME 1
 #define EEPROM_ADDR_BOOT MODE EEPROM_ADDR_SLEEPTIME+2
@@ -56,7 +58,7 @@ enum connectionType
 {
   _default, //wifi->gsm
   _wifi,    //force wifi
-  _gprs     //force gsm/gprs
+  _gprs     //force gsm/gprs  
 };
 
 

@@ -16,6 +16,9 @@
     const char* mainTopic = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/MainData";
     const char* topicSleepTime = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/Sleeptime";
     const char* topicBootMode = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/BootMode";
+    const char* topicIsAlive = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/GetCurrentStatus";
+    const char* topicIsAliveAns = SENSOR_AREA"/TemperaturaVia/" SENSOR_NAME "/GetCurrentStatusAnswer";
+
 #else
     #error Debe incluir "defines.h" primero!
 #endif

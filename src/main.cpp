@@ -26,7 +26,7 @@ DallasTemperature sensors(&oneWire);
 //WIFI login
 const char* ssid = "IOT";
 const char* password = "T3mp@tUr@...";
-const char *code_ver = "1.5/test";
+const char *code_ver = "1.6/test";
 
 
 WiFiClient WIFI_client;
@@ -38,7 +38,7 @@ ESP8266HTTPUpdateServer httpUpdater;
 //Variables globales . son configurables desde el programa.
 unsigned long lastReconnectAttempt = 0;
 unsigned long timer1 = 0;
-uint16_t sleepTime = 1; //minuntos
+uint16_t sleepTime = 10; //minuntos
 uint16_t bootMode = 1;
 
 template<typename T>
@@ -78,6 +78,7 @@ void suscribeMQTT()
 {
   mqtt.subscribe(topicSleepTime);
   mqtt.subscribe(topicBootMode);
+  mqtt.subscribe(topicIsAlive);
 }
 
 void setSleepTime()
@@ -337,6 +338,26 @@ void mqttCallback(char* topic, byte * payload, unsigned int len)
 
     timer1 = millis();
 
+  }
+  else if (strcmp(topicIsAlive, topic) == 0)
+  {
+    JSONVar mqttMessage;
+    JSONVar jsonPayload;
+
+    if ( atoi((char*)payload) == GET_ALL )
+    {
+      Serial.print("Incoming request from server..\n");
+
+      mqttMessage["signalQuality"] = WiFi.RSSI();
+      mqttMessage["localIP"] = WiFi.localIP().toString(); 
+      mqttMessage["ID"] = SENSOR_NAME;
+      //mqttMessage["powerLevel"] = voltage;
+      //mqttMessage["payload"] = jsonPayload;
+
+      mqttPublish<String>(topicIsAliveAns, JSON.stringify(mqttMessage));   
+    
+    }
+    
   }
 
   delay(500);
