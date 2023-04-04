@@ -29,6 +29,8 @@ DallasTemperature sensors(&oneWire);
 //MQTT login
 const char* broker = "190.104.223.227";
 const uint16_t brokerPort = 27001;
+//const char* broker = "10.128.2.137";
+//const uint16_t brokerPort = 1883;
 
 const char MQTT_clientID[] = SENSOR_NAME;
 const char MQTT_user[] = "iot";
