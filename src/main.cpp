@@ -241,14 +241,16 @@ void execServerMode()
 */
 void execNormalMode()
 {
-  //TODO: sensar botones, mostrar datos, etc.
+  static uint8_t isFirst = 1;
+
+  if (mqtt.connected() && isFirst == 1) 
+  {
+      publishTopics();
+      isFirst = 0;
+  }
 
   if (timer1 + BOOT_NORMAL_TIMEOUT <= millis()) //si paso determinado tiempo, que se duerma
   {
-    if (mqtt.connected()) 
-    {
-      publishTopics();
-    }
 
     turnOffSystem();
   }
