@@ -1,2 +1,2 @@
 # Template_TempSensor
-![IMG_20200703_175405](https://user-images.githubusercontent.com/117228370/230682365-b3091206-71be-46c5-99bc-53dfbed46d32.jpg)
+![image](https://user-images.githubusercontent.com/117228370/235164433-e4f8aa15-e661-4219-9bcb-3dc68067b866.png)
