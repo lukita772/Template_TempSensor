@@ -24,8 +24,8 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 //WIFI login
-const char* ssid = "IOT";
-const char* password = "T3mp@tUr@...";
+const char* ssid = "";
+const char* password = "";
 const char *code_ver = "1.6/test";
 
 
@@ -59,7 +59,7 @@ void setup() {
   initializeSerial();
   initializeNetwork(currentConnectionType);
   setSleepTime();
-  initializeMQTT();
+  initializeMQTT(); 
   //initializePins();
 
   if (mqttConnect()) {
