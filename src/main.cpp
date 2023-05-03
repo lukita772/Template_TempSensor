@@ -24,8 +24,8 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 //WIFI login
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "IOT";
+const char* password = "T3mp@tUr@...";
 const char *code_ver = "1.6/test";
 
 
